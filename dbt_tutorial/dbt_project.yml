@@ -1,0 +1,35 @@
+name: 'dbt_tutorial'
+version: '1.0.0'
+
+profile: 'dbt_tutorial'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+models:
+  dbt_tutorial:
+    staging:
+      +materialized: table
+      +schema: staging
+    
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    
+    # marts:
+    #   +materialized: table
+    #   +schema: marts
+
+# This can also be provided as a CLI argument.
+# Example: dbt run --vars '{"sales_expectation": 20000}'
+vars:
+  sales_expectation: 20000

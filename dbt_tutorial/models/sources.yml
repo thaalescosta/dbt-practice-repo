@@ -1,0 +1,15 @@
+version: 2
+
+# ONCE A SOURCE HAS BEEN DEFINED, IT CAN BE REFERENCED FROM A MODEL USING THE {{ source() }} FUNCTION.
+sources: 
+  - name: raw
+    database: dbt_tutorial
+    schema: raw
+    tables:
+      - name: employee_details
+      - name: sales_data
+  - name: sales_raw
+    database: dbt_tutorial
+    schema: public
+    tables:
+      - name: raw_payments
